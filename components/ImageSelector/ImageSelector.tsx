@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import {FormControl, MenuItem, SelectChangeEvent} from "@mui/material";
-import {FieldWrapper, Image, SelectorInput} from "./ImageSelector.styles";
+import {FormControl, SelectChangeEvent} from "@mui/material";
+import {FieldWrapper, Image, SelectorInput, SelectorItem, Title} from "./ImageSelector.styles";
 
 
 interface ImageSelectorProps {
@@ -24,19 +24,21 @@ const ImageSelector: React.FC<ImageSelectorProps> = ({ name, values }) => {
     return (
         <FieldWrapper>
 
+            <Title>{ name }</Title>
+
             <Image />
 
             <FormControl sx={{ width: '100%' }}>
 
                 <SelectorInput variant="outlined" value={value} onChange={handleChange}>
 
-                    <MenuItem disabled value={name}>
+                    <SelectorItem disabled value={name}>
                         { name }
-                    </MenuItem>
+                    </SelectorItem>
 
-                    <MenuItem value="j">
+                    <SelectorItem value="j">
                         Hello
-                    </MenuItem>
+                    </SelectorItem>
 
                 </SelectorInput>
 

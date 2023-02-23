@@ -1,4 +1,4 @@
-import {styled} from "@mui/material";
+import {Divider, styled} from "@mui/material";
 
 
 export const SelectorWrapper = styled('div')`
@@ -17,9 +17,9 @@ export const SelectorWrapper = styled('div')`
   }
 `;
 
-export const SelectorSeparatorForSmallScreens = styled('hr')`
-  width: 100%;
-  max-width: 500px;
+export const SelectorSeparatorForSmallScreens = styled(Divider)`
+  width: 100vw;
+  margin: 20px;
   display: none;
   
   @media(max-width: 1150px) {

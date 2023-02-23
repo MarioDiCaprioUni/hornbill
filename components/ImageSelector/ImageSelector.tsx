@@ -1,20 +1,23 @@
-import React, {useState} from "react";
+import React, {ReactNode, useState} from "react";
 import {FormControl, SelectChangeEvent} from "@mui/material";
 import {FieldWrapper, Image, SelectorInput, SelectorItem, Title} from "./ImageSelector.styles";
 
 
 interface ImageSelectorProps {
     name: string;
-    values: string[];
+    imgSrc?: string;
+    onChange?: (value: string) => void;
+    children?: ReactNode;
 }
 
 
-const ImageSelector: React.FC<ImageSelectorProps> = ({ name, values }) => {
+const ImageSelector: React.FC<ImageSelectorProps> = ({ name, imgSrc, onChange, children }) => {
     const [value, setValue] = useState<string>(name);
 
     function handleChange(event: SelectChangeEvent<unknown>) {
         let newValue = event.target.value;
         if (typeof newValue === 'string') {
+            if (onChange) onChange(newValue);
             setValue(newValue);
         } else {
             setValue(name);
@@ -26,7 +29,7 @@ const ImageSelector: React.FC<ImageSelectorProps> = ({ name, values }) => {
 
             <Title>{ name }</Title>
 
-            <Image />
+            <Image src={imgSrc} sx={imgSrc? {background: 'transparent'} : undefined} />
 
             <FormControl sx={{ width: '100%' }}>
 
@@ -36,9 +39,7 @@ const ImageSelector: React.FC<ImageSelectorProps> = ({ name, values }) => {
                         { name }
                     </SelectorItem>
 
-                    <SelectorItem value="j">
-                        Hello
-                    </SelectorItem>
+                    { children }
 
                 </SelectorInput>
 
